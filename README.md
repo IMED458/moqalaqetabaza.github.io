@@ -2,12 +2,20 @@
 
 ლოკალური Python/SQLite საძიებო აპი username/password ავტორიზაციით.
 
+Deploy-ისთვის იხილეთ [DEPLOY.md](DEPLOY.md).
+
 ## გაშვება
 
 1. SQLite ფაილი ჩადეთ აქ:
 
 ```text
 data/citizens.sqlite
+```
+
+ან მიუთითეთ სხვა ადგილი:
+
+```bash
+DATABASE_PATH=/absolute/path/to/citizens.sqlite python3 server.py
 ```
 
 2. გაუშვით სერვერი:
@@ -35,6 +43,8 @@ password: change-this-password
 
 `data/` საქაღალდე მზად არის მონაცემთა ფაილისთვის, მაგრამ `.gitignore` იცავს, რომ `.mdb`, `.sqlite`, `.csv`, `.db` და მსგავსი ფაილები Git-ში შემთხვევით არ მოხვდეს.
 
+სერვერზე მონაცემთა ფაილი ატვირთეთ ცალკე, მაგალითად hosting file manager-ით, SCP/SFTP-ით ან private volume-ით. აპი წაიკითხავს, თუ ფაილი იქნება `data/citizens.sqlite` გზაზე ან `DATABASE_PATH` სწორად მიუთითებს მასზე.
+
 მოსალოდნელი SQLite სტრუქტურა:
 
 - table: `citizens`
@@ -53,6 +63,28 @@ python tools/import_mdb_to_sqlite.py "path/to/database.mdb" reestri data/citizen
 ```
 
 შემდეგ გაუშვით `python3 server.py`.
+
+## CSV-დან SQLite-მდე
+
+თუ გაქვთ CSV, ატვირთეთ ან ჩადეთ აქ:
+
+```text
+data/citizens.csv
+```
+
+შემდეგ გადააკეთეთ SQLite-ად:
+
+```bash
+python tools/import_csv_to_sqlite.py data/citizens.csv data/citizens.sqlite
+```
+
+ან ჩართეთ ავტომატური იმპორტი გაშვებისას:
+
+```bash
+AUTO_IMPORT_CSV=1 CSV_PATH=data/citizens.csv DATABASE_PATH=data/citizens.sqlite python3 server.py
+```
+
+დიდ CSV-ზე პირველი იმპორტი შეიძლება რამდენიმე წუთს გაგრძელდეს. შემდეგ ძებნა უკვე SQLite-დან იმუშავებს.
 
 ## ქსელში გახსნა
 

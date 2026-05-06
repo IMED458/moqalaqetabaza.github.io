@@ -15,12 +15,23 @@ from urllib.parse import parse_qs, urlparse
 
 ROOT = Path(__file__).resolve().parent
 DB_PATH = Path(os.environ.get("DATABASE_PATH", ROOT / "data" / "citizens.sqlite"))
+CSV_PATH = Path(os.environ.get("CSV_PATH", ROOT / "data" / "citizens.csv"))
 HOST = os.environ.get("HOST", "127.0.0.1")
 PORT = int(os.environ.get("PORT", "8765"))
 USERNAME = os.environ.get("APP_USERNAME", "admin")
 PASSWORD = os.environ.get("APP_PASSWORD", "change-this-password")
 SECRET = os.environ.get("APP_SECRET", "dev-secret-change-before-deploy")
 SESSION_TTL_SECONDS = 60 * 60 * 12
+
+
+def maybe_import_csv():
+    if DB_PATH.exists() or os.environ.get("AUTO_IMPORT_CSV", "") != "1" or not CSV_PATH.exists():
+        return
+    from tools.import_csv_to_sqlite import import_csv
+
+    print(f"SQLite database not found. Importing CSV: {CSV_PATH}")
+    rows, _ = import_csv(CSV_PATH, DB_PATH)
+    print(f"Imported {rows} rows into {DB_PATH}")
 
 
 def q(identifier):
@@ -182,6 +193,7 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    maybe_import_csv()
     server = ThreadingHTTPServer((HOST, PORT), Handler)
     print(f"Open http://{HOST}:{PORT}")
     server.serve_forever()

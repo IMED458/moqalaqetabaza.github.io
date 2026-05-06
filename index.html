@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ka">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>მოქალაქეთა ძებნა</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <section class="topbar">
+        <div>
+          <p class="eyebrow">SQLite ბაზა • ლოკალური სერვერი</p>
+          <h1>მოქალაქეთა ძებნა</h1>
+        </div>
+        <a class="logout-link" href="/logout">გასვლა</a>
+      </section>
+
+      <section id="notice" class="notice ok">
+        <strong>ბაზა იკითხება ლოკალურად.</strong>
+        მონაცემები არ იგზავნება ინტერნეტში; ძებნა ხდება თქვენს Mac-ზე.
+      </section>
+
+      <form id="searchForm" class="field-search">
+        <label class="field-wrap">
+          <span>სახელი</span>
+          <input id="firstNameInput" name="first_name" type="search" placeholder="მაგ. giorgi" autocomplete="off" autofocus>
+        </label>
+        <label class="field-wrap">
+          <span>გვარი</span>
+          <input id="lastNameInput" name="last_name" type="search" placeholder="მაგ. beridze" autocomplete="off">
+        </label>
+        <label class="field-wrap">
+          <span>პირადი ნომერი</span>
+          <input id="personalIdInput" name="personal_id" type="search" placeholder="11 ციფრი ან ნაწილი" autocomplete="off" inputmode="numeric">
+        </label>
+        <label class="field-wrap">
+          <span>მისამართი</span>
+          <input id="addressInput" name="address" type="search" placeholder="ქუჩა ან რაიონი" autocomplete="off">
+        </label>
+        <button id="searchButton" type="submit">ძებნა</button>
+        <button id="clearButton" type="button">გასუფთავება</button>
+      </form>
+
+      <section class="stats" aria-live="polite">
+        <div>
+          <span id="rowCount">0</span>
+          <small>სულ ბაზაში</small>
+        </div>
+        <div>
+          <span id="shownCount">0</span>
+          <small>მოიძებნა</small>
+        </div>
+        <div>
+          <span id="columnCount">0</span>
+          <small>სვეტი</small>
+        </div>
+      </section>
+
+      <section class="table-shell">
+        <table id="dataTable">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+        <div id="emptyState" class="empty-state">შეავსეთ ერთი ან რამდენიმე ველი და დააჭირეთ ძებნას.</div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

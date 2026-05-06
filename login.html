@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ka">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>შესვლა</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="login-page">
+      <form class="login-panel" method="post" action="/login">
+        <p class="eyebrow">დაცული წვდომა</p>
+        <h1>მოქალაქეთა ძებნა</h1>
+        <label class="field-wrap">
+          <span>მომხმარებელი</span>
+          <input name="username" type="text" autocomplete="username" required autofocus>
+        </label>
+        <label class="field-wrap">
+          <span>პაროლი</span>
+          <input name="password" type="password" autocomplete="current-password" required>
+        </label>
+        <button type="submit">შესვლა</button>
+      </form>
+    </main>
+  </body>
+</html>

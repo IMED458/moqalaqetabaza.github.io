@@ -1,0 +1,19 @@
+.DS_Store
+.env
+.venv/
+__pycache__/
+*.pyc
+
+# Real database/data files must stay out of git.
+data/*
+!data/.gitkeep
+!data/README.md
+*.mdb
+*.accdb
+*.sqlite
+*.sqlite-*
+*.db
+*.csv
+*.tsv
+*.xlsx
+*.xls

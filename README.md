@@ -30,6 +30,23 @@ APP_USERNAME=admin APP_PASSWORD='strong-password' APP_SECRET='random-long-secret
 http://127.0.0.1:8765
 ```
 
+## Mac-ზე მუდმივად გაშვება
+
+ერთხელ გაუშვით:
+
+```bash
+chmod +x scripts/*.sh scripts/*.command
+scripts/install-launch-agent.sh
+```
+
+ამის შემდეგ აპი ავტომატურად გაეშვება Mac-ში შესვლისას და გაჩერების შემთხვევაშიც თავიდან ჩაირთვება.
+
+ხელით გასახსნელად შეგიძლიათ ორჯერ დააჭიროთ:
+
+```text
+scripts/open-local.command
+```
+
 ნაგულისხმევი ლოკალური მონაცემებია:
 
 ```text

@@ -2,6 +2,7 @@ const searchForm = document.querySelector("#searchForm");
 const firstNameInput = document.querySelector("#firstNameInput");
 const lastNameInput = document.querySelector("#lastNameInput");
 const personalIdInput = document.querySelector("#personalIdInput");
+const birthYearInput = document.querySelector("#birthYearInput");
 const addressInput = document.querySelector("#addressInput");
 const clearButton = document.querySelector("#clearButton");
 const notice = document.querySelector("#notice");
@@ -12,7 +13,7 @@ const rowCount = document.querySelector("#rowCount");
 const shownCount = document.querySelector("#shownCount");
 const columnCount = document.querySelector("#columnCount");
 
-const inputs = [firstNameInput, lastNameInput, personalIdInput, addressInput];
+const inputs = [firstNameInput, lastNameInput, personalIdInput, birthYearInput, addressInput];
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -28,6 +29,7 @@ async function runSearch() {
     first_name: firstNameInput.value.trim(),
     last_name: lastNameInput.value.trim(),
     personal_id: personalIdInput.value.trim(),
+    birth_year: birthYearInput.value.trim(),
     address: addressInput.value.trim()
   });
   const hasFilters = inputs.some((input) => input.value.trim());

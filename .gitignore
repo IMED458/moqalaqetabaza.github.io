@@ -3,6 +3,7 @@
 .venv/
 __pycache__/
 *.pyc
+logs/
 
 # Real database/data files must stay out of git.
 data/*

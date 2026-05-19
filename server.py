@@ -95,6 +95,7 @@ def search(filters, limit=100):
         add_like_clause(clauses, params, ["saxeli"], filters.get("first_name", ""))
         add_like_clause(clauses, params, ["gvari"], filters.get("last_name", ""))
         add_like_clause(clauses, params, ["piadi #"], filters.get("personal_id", ""))
+        add_like_clause(clauses, params, ["dab weli"], filters.get("birth_year", ""))
         add_like_clause(clauses, params, ["quCa", "raioni"], filters.get("address", ""))
 
         where = " WHERE " + " AND ".join(clauses) if clauses else ""
@@ -176,6 +177,7 @@ class Handler(BaseHTTPRequestHandler):
                 "first_name": params.get("first_name", [""])[0],
                 "last_name": params.get("last_name", [""])[0],
                 "personal_id": params.get("personal_id", [""])[0],
+                "birth_year": params.get("birth_year", [""])[0],
                 "address": params.get("address", [""])[0],
             }), ensure_ascii=False).encode("utf-8")
             self.send_bytes(payload, "application/json; charset=utf-8")

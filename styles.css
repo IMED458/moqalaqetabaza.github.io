@@ -137,7 +137,7 @@ input[type="search"] {
 
 .field-search {
   display: grid;
-  grid-template-columns: repeat(4, minmax(150px, 1fr)) auto auto;
+  grid-template-columns: repeat(5, minmax(140px, 1fr)) auto auto;
   gap: 10px;
   margin-bottom: 14px;
 }
